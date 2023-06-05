@@ -40,6 +40,7 @@ void TrackAudio::Start()
 void TrackAudio::ProcessDecode()
 {
 	bool ret;
+
 	while (true) {
 		if (_lPacketList.size() > 0)
 		{

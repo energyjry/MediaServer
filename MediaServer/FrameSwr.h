@@ -33,9 +33,6 @@ private:
 
     int _targetMaxNbSamples;
 
-    //int _outBufSize;
-    //uint8_t** _outBuf;    
-
     int nTargetlinesize;
     uint8_t** pTargetBuf;
 

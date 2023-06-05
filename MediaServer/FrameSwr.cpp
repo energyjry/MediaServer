@@ -43,7 +43,7 @@ bool FrameSwr::InitFrameSwr(int srcSampleRate, int srcChannels, AVSampleFormat s
         pSwrCtx,
         av_get_default_channel_layout(_targetChannels),
         _targetFmt,
-        _targetChannels,
+        _targetSampleRate,
         av_get_default_channel_layout(_srcChannels),
         _srcFmt,
         _srcSampleRate,
@@ -96,15 +96,6 @@ bool FrameSwr::ConvertFrame(AVFrame* srcFrame, AVFrame* targetFrame)
         return false;
     }
     int dataSize = av_samples_get_buffer_size(&nTargetlinesize, _targetChannels, ret, _targetFmt, 1);
-    fwrite(pTargetBuf, 1, dataSize, _pcmFile);
-    //targetFrame->nb_samples = _targetNbSamples;
-    //memcpy(targetFrame->data, _outBuf[0], dst_bufsize);
-    //targetFrame->data = 
-    //dataBuf = (char*)pTargetBuf[0];
-    //dataSize = dst_bufsize;
-    //fwrite(dataBuf, 1, dataSize, mPcmFile);
-
-    //int dataSize = targetFrame->channels * nb * av_get_bytes_per_sample(_targetFmt);
-    //fwrite(targetFrame->data[0], 1, dataSize, _pcmFile);
+    fwrite(pTargetBuf[0], 1, dataSize, _pcmFile);
     return true;
 }
